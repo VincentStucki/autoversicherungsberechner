@@ -71,9 +71,9 @@ body {
 footer,
 header,
 main {
-    margin: 0 auto;
+    margin: 0 0 0 0;
     max-width: var(--width-content);
-    padding: 3rem 1rem;
+    padding: 0rem 1rem;
 }
 
 hr {
@@ -135,7 +135,7 @@ header a strong {
     margin-right: 0.5rem;
 }
 
-header nav img {
+header  img {
     margin: 1rem 0;
 }
 
@@ -145,13 +145,7 @@ section header {
 }
 
 /* Nav */
-nav {
-    align-items: center;
-    display: flex;
-    font-weight: bold;
-    justify-content: space-between;
-    margin-bottom: 7rem;
-}
+
 
 nav ul {
     list-style: none;
@@ -228,7 +222,7 @@ h4,
 h5,
 h6 {
     line-height: var(--line-height);
-    text-wrap: balance;
+    text-wrap: normal;
 }
 
 mark {
@@ -373,7 +367,7 @@ input[type="submit"][disabled]:hover {
     filter: none;
 }
 
-form {
+/*form {
     border: 1px solid var(--color-bg-secondary);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow) var(--color-shadow);
@@ -382,7 +376,7 @@ form {
     min-width: var(--width-card);
     padding: 1.5rem;
     text-align: var(--justify-normal);
-}
+}*/
 
 form header {
     margin: 1.5rem 0;
@@ -418,7 +412,7 @@ input[type="range"] {
 input,
 select,
 textarea {
-    border: 1px solid var(--color-bg-secondary);
+    border: 1px solid var(--color-text);
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
     padding: 0.4rem 0.8rem;
@@ -534,4 +528,52 @@ blockquote footer {
 *::-webkit-scrollbar-thumb {
     background-color: var(--color-scrollbar);
     border-radius: 10px;
+}
+h1{
+    text-align: left;
+}
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.circle-container {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+}
+svg{
+    padding-bottom: 200px;
+}
+
+line{
+    color: blue;
+}
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@media (max-width: 600px) {
+
 }
