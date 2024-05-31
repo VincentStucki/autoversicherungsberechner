@@ -1,41 +1,62 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import Fahrzeug from './Fahrzeug';
 import Fahrer from './Fahrer';
-import Versicherung from './Versicherung'
-import Fahrstrecke from './Fahrstrecke'
-import Region from './Region'
-import './mvp.css';
-
+import Versicherung from './Versicherung';
+import Fahrstrecke from './Fahrstrecke';
+import Region from './Region';
+import Start from './Start';
 import './mvp.css';
 
 function App() {
     const [isLinkVisible, setLinkVisible] = useState(true);
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [isButtonVisible, setButtonVisible] = useState(false);
+    const [formData, setFormData] = useState({
+        fahrzeug: {},
+        fahrer: {},
+        versicherung: {},
+        fahrstrecke: {},
+        region: {}
+    });
 
     const pages = [
-        { name: "Fahrzeug", path: "/Fahrzeug" },
-        { name: "Fahrer", path: "/Fahrer" },
-        { name: "Versicherung", path: "/Versicherung" },
-        { name: "Fahrstrecke", path: "/Fahrstrecke" },
-        { name: "Region", path: "/Region" }
+        { name: "Start", path: "/Start", component: Start },
+        { name: "Fahrzeug", path: "/Fahrzeug", component: Fahrzeug },
+        { name: "Fahrer", path: "/Fahrer", component: Fahrer },
+        { name: "Versicherung", path: "/Versicherung", component: Versicherung },
+        { name: "Fahrstrecke", path: "/Fahrstrecke", component: Fahrstrecke },
+        { name: "Region", path: "/Region", component: Region }
     ];
 
     const handleNext = () => {
-        if (currentPageIndex < pages.length) {
-            setCurrentPageIndex(currentPageIndex + 1);
-            console.log(currentPageIndex)
-
-        }
+        setCurrentPageIndex(prevIndex => Math.min(prevIndex + 1, pages.length - 1));
     };
 
     const handlePrevious = () => {
-        if (currentPageIndex > 0) {
-            setCurrentPageIndex(currentPageIndex - 1);
-            console.log(currentPageIndex)
-        }
+        setCurrentPageIndex(prevIndex => Math.max(prevIndex - 1, 0));
     };
+
+    const handleFormDataChange = (page, data) => {
+        setFormData(prevData => ({
+            ...prevData,
+            [page]: data
+        }));
+    };
+
+    useEffect(() => {
+        const handleUnload = (event) => {
+            event.preventDefault();
+            setLinkVisible(true);
+            setButtonVisible(false);
+            setCurrentPageIndex(0);
+
+        };
+
+        window.addEventListener("beforeunload", handleUnload);
+
+        return () => window.removeEventListener("beforeunload", handleUnload);
+    }, []);
 
     return (
         <div>
@@ -45,30 +66,37 @@ function App() {
             <main>
                 <Router>
                     {isLinkVisible && (
-                        <Link to={pages[0].path} className="button-link" onClick={() =>
-                        {
-                            setLinkVisible(false)
-                            setButtonVisible(true)
-                            setCurrentPageIndex(0)
+                        <Link to={pages[1].path} className="button-link" onClick={() => {
+                            setLinkVisible(false);
+                            setButtonVisible(true);
+                            setCurrentPageIndex(1);
                         }}>
                             Start
                         </Link>
                     )}
                     <Routes>
-                        <Route path={pages[0].path} element={<Fahrzeug />} />
-                        <Route path={pages[1].path} element={<Fahrer />} />
-                        <Route path={pages[2].path} element={<Versicherung />} />
-                        <Route path={pages[3].path} element={<Fahrstrecke />} />
-                        <Route path={pages[4].path} element={<Region />} />
+                        <Route path="/" element={<Navigate to="/Start" />} />
+                        {pages.map((page, index) => (
+                            <Route
+                                key={index}
+                                path={page.path}
+                                element={
+                                    <page.component
+                                        data={formData[page.name.toLowerCase()]}
+                                        onDataChange={(data) => handleFormDataChange(page.name.toLowerCase(), data)}
+                                    />
+                                }
+                            />
+                        ))}
                     </Routes>
                     <nav>
-                        {isButtonVisible && (
-                            <Link to={pages[currentPageIndex].path} className="button-link zurueck" onClick={handlePrevious}>
+                        {isButtonVisible && currentPageIndex > 0 && currentPageIndex !== 1 && (
+                            <Link to={pages[currentPageIndex - 1].path} className="button-link zurueck" onClick={handlePrevious}>
                                 Zurück
                             </Link>
                         )}
-                        {isButtonVisible && (
-                            <Link to={pages[currentPageIndex].path} className="button-link weiter" onClick={handleNext}>
+                        {isButtonVisible && currentPageIndex < pages.length - 1 && (
+                            <Link to={pages[currentPageIndex + 1].path} className="button-link weiter" onClick={handleNext}>
                                 Weiter
                             </Link>
                         )}

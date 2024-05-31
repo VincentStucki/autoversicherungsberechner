@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import Circle from './Circle';
 
-const Fahrer = () => {
-    const [alter, setAlter] = useState()
+function Fahrer({ data, onDataChange }) {
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        onDataChange({ ...data, [name]: value });
+    };
 
     return (
         <div>
@@ -29,8 +33,19 @@ const Fahrer = () => {
                 <form>
                     <label htmlFor="alter">Ihr Alter:</label>
                     <input type="number" id="alter" name="alter" placeholder="0" step="1" min="18" required
-                           onChange={(event) => {setAlter(event.target.value)}}
-                           value={alter}
+                           onChange={handleChange}
+                           value={data.alter || ''}
+                    />
+                    <label htmlFor="Geschlecht">Ihr Geschlecht: </label>
+                    <select id="geschlecht" name="geschlecht" value={data.geschlecht || ''} onChange={handleChange}>
+                        <option value="" disabled>Bitte wählen</option>
+                        <option value="maennlich">Männlich</option>
+                        <option value="weiblich">Weiblich</option>
+                    </select>
+                    <label htmlFor="fahrerfahrung">Fahrerfahrung (in Jahren):</label>
+                    <input type="number" id="fahrerfahrung" name="fahrerfahrung" placeholder="0" step="1" required
+                           onChange={handleChange}
+                           value={data.fahrerfahrung || ''}
                     />
                 </form>
             </div>

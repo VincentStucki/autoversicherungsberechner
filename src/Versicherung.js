@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import Circle from './Circle';
 
-const Versicherung = () => {
+function Versicherung({ data, onDataChange }) {
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        onDataChange({ ...data, [name]: value });
+    };
 
 
     return (
@@ -12,7 +17,7 @@ const Versicherung = () => {
                     <line x1="150" y1="50" x2="250" y2="50" stroke="black" strokeWidth="2" className="line" />
                     <Circle cx={300} cy={50} radius={50} color="#2176FF" number={2} />
                     <line x1="350" y1="50" x2="450" y2="50" stroke="black" strokeWidth="2" className="line" />
-                    <Circle cx={500} cy={50} radius={50} color="#31393C" number={3} />
+                    <Circle cx={500} cy={50} radius={50} color="#2176FF" number={3} />
                     <line x1="550" y1="50" x2="650" y2="50" stroke="black" strokeWidth="2" className="line" />
                     <Circle cx={700} cy={50} radius={50} color="#31393C" number={4} />
                     <line x1="750" y1="50" x2="850" y2="50" stroke="black" strokeWidth="2" className="line" />
@@ -27,7 +32,12 @@ const Versicherung = () => {
             </div>
             <div className="content">
                 <form>
-
+                    <label>Art der Deckung: </label>
+                    <select id="versicherung" name="versicherung" value={data.versicherung || ''} onChange={handleChange}>
+                        <option value="" disabled>Bitte wählen</option>
+                        <option value="Basisdeckung">Basisdeckung</option>
+                        <option value="weiblich">Premiumdeckung</option>
+                    </select>
                 </form>
             </div>
         </div>

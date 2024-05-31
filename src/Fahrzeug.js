@@ -1,7 +1,15 @@
 import React from 'react';
 import Circle from './Circle';
 
-const Fahrzeug = () => {
+function Fahrzeug({ data, onDataChange }) {
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        onDataChange({ ...data, [name]: value });
+    };
+
+
+
     return (
         <div>
             <div className="circle-container">
@@ -25,8 +33,10 @@ const Fahrzeug = () => {
             </div>
             <div className="content">
                 <form>
-                    <label htmlFor="wert">Wert des Fahrzeuges:</label>
-                    <input type="number" id="wert" name="wert" placeholder="0.00" step="0.01" min="0" required />
+                    <label>
+                        Wert des Fahrzeuges:
+                        <input type="number" name="wert" id="wert" value={data.wert || ''} onChange={handleChange} placeholder="0.00" step="0.01" min="0" required />
+                    </label>
                 </form>
             </div>
 
