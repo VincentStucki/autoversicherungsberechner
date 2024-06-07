@@ -35,8 +35,9 @@ function Versicherung({ data, onDataChange }) {
                     <label>Art der Deckung: </label>
                     <select id="versicherung" name="versicherung" value={data.versicherung || ''} onChange={handleChange}>
                         <option value="" disabled>Bitte wählen</option>
-                        <option value="Basisdeckung">Basisdeckung</option>
-                        <option value="weiblich">Premiumdeckung</option>
+                        <option value="haftpflichtversicherung">Haftpflichtversicherung</option>
+                        <option value="teilkaskoversicherung">Teilkaskoversicherung</option>
+                        <option value="vollkaskoversicherung">Vollkaskoversicherung</option>
                     </select>
                 </form>
             </div>

@@ -567,11 +567,62 @@ svg{
 line{
     color: blue;
 }
-.content{
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
 
+
+}
+.done{
+    float: right;
+}
+
+.box{
+    display: flex;
+    gap: 10rem; /* Space between columns */
+    padding: 20px;
+}
+.spalte{
+    flex: 1;
+
+
+}
+
+.summary{
+    border: 1px solid #000;
+    border-radius: 30px;
+    display: inline-block;
+    padding: 20px;
+    line-height: 0.5;
+    padding-right: 0px;
+    background-color: #b5e6eb;
+}
+
+.summary p{
+    font-size: 0.8rem;
+}
+
+.summary h3{
+    font-size: 1rem;
+}
+
+.summary h2{
+    font-size: 1.2rem;
+}
+
+.ergebnis{
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    line-height: 0.1;
+    background-color: #b5e6eb;
+}
+
+.ergebnis p{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 @media (max-width: 600px) {

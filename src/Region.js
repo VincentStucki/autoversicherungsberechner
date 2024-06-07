@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import Circle from './Circle';
+import {useNavigate} from "react-router-dom";
 
 function Region({ data, onDataChange }) {
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         onDataChange({ ...data, [name]: value });
+    };
+
+    const handleDone = () => {
+        navigate('/Ergebnis');
     };
 
 
@@ -33,12 +39,17 @@ function Region({ data, onDataChange }) {
             <div className="content">
                 <form>
                     <label htmlFor="wohnort">Wohnort (Region)</label>
-                    <input type="text" id="wohnort" name="wohnort"  required
-                           onChange={handleChange}
-                           value={data.wohnort || ''}
-                    />
+                    <select id="wohnort" name="wohnort" value={data.wohnort || ''} onChange={handleChange}>
+                        <option value="" disabled>Bitte Wählen</option>
+                        <option value="stadt">städtisches Gebiet</option>
+                        <option value="land">ländliches Gebiet</option>
+                    </select>
+
                 </form>
+
+
             </div>
+            <button className="done" onClick={handleDone}>Fertig</button>
         </div>
     );
 };

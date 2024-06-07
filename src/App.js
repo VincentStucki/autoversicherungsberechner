@@ -6,6 +6,7 @@ import Versicherung from './Versicherung';
 import Fahrstrecke from './Fahrstrecke';
 import Region from './Region';
 import Start from './Start';
+import Ergebnis from './Ergebnis';
 import './mvp.css';
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
                                 }
                             />
                         ))}
+                        <Route path="/Ergebnis" element={<Ergebnis formData={formData} />} />
                     </Routes>
                     <nav>
                         {isButtonVisible && currentPageIndex > 0 && currentPageIndex !== 1 && (
