@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useLocation } from 'react-router-dom';
 import Fahrzeug from './Fahrzeug';
 import Fahrer from './Fahrer';
 import Versicherung from './Versicherung';
@@ -45,19 +45,56 @@ function App() {
         }));
     };
 
+    const resetApp = () => {
+        setCurrentPageIndex(0);
+        setFormData({
+            fahrzeug: {},
+            fahrer: {},
+            versicherung: {},
+            fahrstrecke: {},
+            region: {}
+        });
+    };
+
     useEffect(() => {
         const handleUnload = (event) => {
             event.preventDefault();
             setLinkVisible(true);
             setButtonVisible(false);
             setCurrentPageIndex(0);
-
         };
 
         window.addEventListener("beforeunload", handleUnload);
 
         return () => window.removeEventListener("beforeunload", handleUnload);
     }, []);
+
+    function NavigationButtons() {
+        const location = useLocation();
+
+        useEffect(() => {
+            if (location.pathname === '/Ergebnis') {
+                setButtonVisible(false);
+            } else {
+                setButtonVisible(true);
+            }
+        }, [location.pathname]);
+
+        return (
+            <nav>
+                {isButtonVisible && currentPageIndex > 0 && (
+                    <Link to={pages[currentPageIndex - 1].path} className="button-link zurueck" onClick={handlePrevious}>
+                        Zurück
+                    </Link>
+                )}
+                {isButtonVisible && currentPageIndex < pages.length - 1 && (
+                    <Link to={pages[currentPageIndex + 1].path} className="button-link weiter" onClick={handleNext}>
+                        Weiter
+                    </Link>
+                )}
+            </nav>
+        );
+    }
 
     return (
         <div>
@@ -89,20 +126,9 @@ function App() {
                                 }
                             />
                         ))}
-                        <Route path="/Ergebnis" element={<Ergebnis formData={formData} />} />
+                        <Route path="/Ergebnis" element={<Ergebnis formData={formData} onRestart={resetApp} />} />
                     </Routes>
-                    <nav>
-                        {isButtonVisible && currentPageIndex > 0 && currentPageIndex !== 1 && (
-                            <Link to={pages[currentPageIndex - 1].path} className="button-link zurueck" onClick={handlePrevious}>
-                                Zurück
-                            </Link>
-                        )}
-                        {isButtonVisible && currentPageIndex < pages.length - 1 && (
-                            <Link to={pages[currentPageIndex + 1].path} className="button-link weiter" onClick={handleNext}>
-                                Weiter
-                            </Link>
-                        )}
-                    </nav>
+                    <NavigationButtons />
                 </Router>
             </main>
         </div>

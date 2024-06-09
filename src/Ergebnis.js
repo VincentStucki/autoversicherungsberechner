@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Ergebnis({ formData }) {
+function Ergebnis({ formData, onRestart }) {
     const { fahrzeug, fahrer, versicherung, fahrstrecke, region } = formData;
     const { wert: fahrzeugWert } = fahrzeug;
     const { alter: fahrerAlter, geschlecht: fahrerGeschlecht, fahrerfahrung: fahrerErfahrung } = fahrer;
@@ -33,30 +34,36 @@ function Ergebnis({ formData }) {
 
     let Versicherungskosten = basis * alterFaktor * geschlechtFaktor * fahrzeugWertFaktor * streckenFaktor * fahrErfahrungFaktor * versicherungFaktor * regionFaktor;
 
-    return (
-        <div className="box">
-            <div className="spalte">
-                <section className="ergebnis">
-                <h1>Versicherungsprämie:</h1>
-                <p>{Versicherungskosten.toFixed(2)} Fr.</p>
-            </section>
-            </div>
+    const navigate = useNavigate();
 
-            <div className="spalte summary">
-                <h2>Zusammenfassung</h2>
-                <h3>Fahrzeug</h3>
-                <p>Wert des Fahrzeuges: {fahrzeugWert}Fr.</p>
-                <h3>Fahrer/in</h3>
-                <p>Alter: {fahrerAlter}</p>
-                <p>Geschlecht: {fahrerGeschlecht}</p>
-                <p>Fahrerfahrung: {fahrerErfahrung} Jahren</p>
-                <h3>Versicherung</h3>
-                <p>Versicherungsart: {versicherungsArt}</p>
-                <h3>Fahrstrecke</h3>
-                <p>Streckenlänge: {streckenLaenge}km</p>
-                <h3>Region</h3>
-                <p>Wohnort: {regionWohnort === "stadt" ? "Städliches Gebiet" : "Ländliches Gebiet"}</p>
+    return (
+        <div>
+            <div className="box">
+                <div className="spalte">
+                    <section className="ergebnis">
+                        <h1>Versicherungsprämie:</h1>
+                        <p>{Versicherungskosten.toFixed(2)} Fr.</p>
+                    </section>
+                </div>
+
+                <div className="spalte summary">
+                    <h2>Zusammenfassung</h2>
+                    <h3>Fahrzeug</h3>
+                    <p>Wert des Fahrzeuges: {fahrzeugWert} Fr.</p>
+                    <h3>Fahrer/in</h3>
+                    <p>Alter: {fahrerAlter}</p>
+                    <p>Geschlecht: {fahrerGeschlecht}</p>
+                    <p>Fahrerfahrung: {fahrerErfahrung} Jahren</p>
+                    <h3>Versicherung</h3>
+                    <p>Versicherungsart: {versicherungsArt}</p>
+                    <h3>Fahrstrecke</h3>
+                    <p>Streckenlänge: {streckenLaenge} km</p>
+                    <h3>Region</h3>
+                    <p>Wohnort: {regionWohnort === "stadt" ? "Städtisches Gebiet" : "Ländliches Gebiet"}</p>
+                </div>
             </div>
+            <button className="button-link" onClick={() => navigate('/Region')}>Zurück</button>
+            <button className="done button-link" onClick={() => { onRestart(); navigate('/'); }}>Neu Start</button>
         </div>
     );
 }

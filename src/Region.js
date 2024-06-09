@@ -49,7 +49,7 @@ function Region({ data, onDataChange }) {
 
 
             </div>
-            <button className="done" onClick={handleDone}>Fertig</button>
+            <button className="button-link done" onClick={handleDone}>Fertig</button>
         </div>
     );
 };
