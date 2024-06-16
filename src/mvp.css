@@ -529,6 +529,12 @@ blockquote footer {
     background-color: var(--color-scrollbar);
     border-radius: 10px;
 }
+
+.container {
+    display: block;
+
+}
+
 h1{
     text-align: left;
 }
@@ -548,6 +554,38 @@ h1{
 .button-link:hover {
     background-color: #0056b3;
 }
+
+.pdf{
+    border: solid #000000 2px;
+    background: linear-gradient(to bottom right, #0056b3, #B0E0E6);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.pdf:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(0, 86, 179, 0.5), .125rem .125rem 1rem rgb(176, 224, 230, 0.5);
+}
+
+.pdf:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(0, 86, 179, 0.5), .125rem .125rem 1rem rgb(176, 224, 230, 0.5);
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -626,5 +664,14 @@ line{
 }
 
 @media (max-width: 600px) {
-
+    .circle-container{
+        display: none;
+    }
+    .summary{
+        display: none;
+    }
 }
+
+
+
+

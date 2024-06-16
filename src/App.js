@@ -47,6 +47,8 @@ function App() {
 
     const resetApp = () => {
         setCurrentPageIndex(0);
+        setLinkVisible(true);
+        setButtonVisible(false);
         setFormData({
             fahrzeug: {},
             fahrer: {},
@@ -73,11 +75,7 @@ function App() {
         const location = useLocation();
 
         useEffect(() => {
-            if (location.pathname === '/Ergebnis') {
-                setButtonVisible(false);
-            } else {
-                setButtonVisible(true);
-            }
+            setButtonVisible(location.pathname !== '/Start' && location.pathname !== '/Ergebnis');
         }, [location.pathname]);
 
         return (
@@ -96,22 +94,34 @@ function App() {
         );
     }
 
+    function StartLink() {
+        const location = useLocation();
+
+        useEffect(() => {
+            setLinkVisible(location.pathname === '/Start');
+        }, [location.pathname]);
+
+        return (
+            isLinkVisible && (
+                <Link to={pages[1].path} className="button-link" onClick={() => {
+                    setLinkVisible(false);
+                    setButtonVisible(true);
+                    setCurrentPageIndex(1);
+                }}>
+                    Start
+                </Link>
+            )
+        );
+    }
+
     return (
-        <div>
+        <div className="container">
             <header>
                 <h1>Autoversicherungsrechner</h1>
             </header>
             <main>
                 <Router>
-                    {isLinkVisible && (
-                        <Link to={pages[1].path} className="button-link" onClick={() => {
-                            setLinkVisible(false);
-                            setButtonVisible(true);
-                            setCurrentPageIndex(1);
-                        }}>
-                            Start
-                        </Link>
-                    )}
+                    <StartLink />
                     <Routes>
                         <Route path="/" element={<Navigate to="/Start" />} />
                         {pages.map((page, index) => (
