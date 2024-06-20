@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Autoversicherungsrechner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Projekt-Abstract
+Der Autoversicherungsrechner ist eine interaktive Webanwendung, die es Nutzern ermöglicht, eine 
+Schätzung ihrer Versicherungsprämie basierend auf verschiedenen Faktoren wie Fahrzeugwert, Alter 
+und Erfahrung des Fahrers, Versicherungsart, Fahrstrecke und Region zu berechnen. Die Anwendung 
+führt den Benutzer durch verschiedene Formulare, sammelt relevante Daten und berechnet schließlich 
+die geschätzten Kosten für die Autoversicherung. Die Ergebnisse können als PDF heruntergeladen werden.
 
-## Available Scripts
+### Autor
+Vincent Stucki
 
-In the project directory, you can run:
+### Schule
+Kantonsschule Büelrain
 
-### `npm start`
+### Zeitraum
+März 2024 - Juni 2024
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Persönliche Auswertung
+Dieses Projekt ermöglichte es mir, meine Fähigkeiten in React und JavaScript zu vertiefen. 
+Ich habe gelernt, wie man eine mehrseitige Anwendung mit React Router erstellt und 
+Benutzerinteraktionen effektiv verwaltet. Die Integration von Drittanbieter-Bibliotheken 
+wie jsPDF und html2canvas zur PDF-Generierung war ebenfalls eine wertvolle Erfahrung.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Projektstruktur
+Das Projekt besteht aus den folgenden Hauptkomponenten:
 
-### `npm test`
+### Hauptkomponenten
+1. **App.js:** Die Hauptkomponente der Anwendung, die den gesamten Ablauf steuert, 
+einschließlich Navigation und Datenverwaltung.
+2. **Fahrzeug.js:** Komponente zur Erfassung von Fahrzeuginformationen.
+3. **Fahrer.js:** Komponente zur Erfassung von Informationen über den Fahrer.
+4. **Versicherung.js**: Komponente zur Auswahl der Versicherungsart.
+5. **Fahrstrecke.js**: Komponente zur Erfassung der jährlichen Fahrstrecke.
+6. **Region.js:** Komponente zur Auswahl der Region, in der der Benutzer lebt.
+7. **Ergebnis.js:** Komponente zur Anzeige der berechneten Versicherungsprämie und zur PDF-Generierung.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Zusätzliche Dateien
+- **Circle.js:** Eine Komponente zur Darstellung von Fortschrittskreisen.
+- **mvp.css:** Eine CSS-Datei zur Gestaltung der Anwendung.
 
-### `npm run build`
+## Anleitung zur Nutzung
+1. Start: Die Anwendung beginnt auf der Startseite. Klicken Sie auf "Start", um den Prozess 
+zu beginnen.
+2. Navigieren: Verwenden Sie die "Weiter" und "Zurück" Schaltflächen, um durch die Formulare 
+zu navigieren und Daten einzugeben.
+3. Daten eingeben: Geben Sie die erforderlichen Informationen in die Formulare ein. 
+Jede Seite speichert die Daten automatisch.
+4. Ergebnis anzeigen: Nachdem alle Informationen eingegeben wurden, wird die geschätzte 
+Versicherungsprämie auf der Ergebnisseite angezeigt.
+5. PDF herunterladen: Klicken Sie auf "Download PDF", um die Ergebnisse als PDF 
+herunterzuladen.
+6. Neu Starten: Klicken Sie auf "Neu Start", um den Prozess von vorne zu beginnen.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Code-Struktur und Funktionsweise
+### App.js
+- **State-Management**: Die App-Komponente verwendet useState, um den aktuellen Index der 
+Seite und die Formulardaten zu verwalten.
+- **Navigation**: Die Anwendung verwendet react-router-dom für die Navigation zwischen den Seiten.
+- **Formulardaten**: Die Funktion handleFormDataChange aktualisiert die Formulardaten, während 
+der Benutzer die Eingaben vornimmt.
+- **Seiten-Array**: Ein Array von Objekten, das den Namen, Pfad und die Komponente jeder Seite enthält.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Einzelne Seitenkomponente
+Jede Seite (z.B. **Fahrzeug.js**, **Fahrer.js**, etc.) besteht aus einem Formular zur Erfassung 
+spezifischer Daten. Diese Komponenten empfangen die aktuellen Daten als Prop und verwenden 
+**onDataChange**, um Änderungen an den App-Status weiterzugeben.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Ergebnis.js
+Diese Komponente berechnet die Versicherungsprämie basierend auf den eingegebenen Daten 
+und stellt eine Funktion zur PDF-Generierung bereit.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Fazit
+Der Autoversicherungsrechner ist ein praktisches Tool zur Berechnung der Autoversicherungsprämie
+und bietet eine einfache Benutzerführung. Die Anwendung demonstriert die Fähigkeiten zur
+Erstellung von React-Anwendungen mit komplexer Navigation und Datenverwaltung. 
+Durch die Implementierung dieser Anwendung konnte ich meine Kenntnisse in React, JavaScript und
+Webentwicklung insgesamt erweitern und festigen.
