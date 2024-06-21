@@ -71,7 +71,7 @@ Diese Komponente berechnet die Versicherungsprämie basierend auf den eingegeben
 und stellt eine Funktion zur PDF-Generierung bereit.
 
 # Deployment
-Die React-App ist auf vercel deployed: [Autoversicherungsberehcner](https://autoversicherungsberechner.vercel.app)
+Die React-App ist auf vercel deployed: [Autoversicherungsberechner](https://autoversicherungsberechner.vercel.app)
 
 # Fazit
 Der Autoversicherungsrechner ist ein praktisches Tool zur Berechnung der Autoversicherungsprämie
