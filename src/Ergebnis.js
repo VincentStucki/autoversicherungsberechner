@@ -108,10 +108,10 @@ function Ergebnis({ formData, onRestart }) {
                     <p>Streckenlänge: {streckenLaenge} km</p>
                     <h3>Region</h3>
                     <p>Wohnort: {regionWohnort === "stadt" ? "Städtisches Gebiet" : "Ländliches Gebiet"}</p>
-                    <button className="button-link pdf" onClick={generatePDF}>Download PDF</button>
+                    <button className="button pdf" onClick={generatePDF}>Download PDF</button>
                 </div>
             </div>
-            <button className="button-link" onClick={() => navigate('/Region')}>Zurück</button>
+            <button className="button-nav" onClick={() => navigate('/Region')}>Zurück</button>
             <button className="done button-link" onClick={() => { onRestart(); navigate('/'); }}>Neu Start</button>
         </div>
     );

@@ -10,7 +10,7 @@ function Fahrer({ data, onDataChange }) {
 
     return (
         <div>
-            <div className="circle-container">
+            {/*  <div className="circle-container">
                 <svg width="1600" height="200" className="circle-container">
                     <Circle cx={100} cy={50} radius={50} color="#2176FF" number={1} />
                     <line x1="150" y1="50" x2="250" y2="50" stroke="black" strokeWidth="2" className="line" />
@@ -28,22 +28,22 @@ function Fahrer({ data, onDataChange }) {
                     <text x={700} y={150} textAnchor="middle" fill="black">Fahrstrecke</text>
                     <text x={900} y={150} textAnchor="middle" fill="black">Region</text>
                 </svg>
-            </div>
-            <div className="content">
+            </div> */}
+            <div className="home content">
                 <form>
                     <label htmlFor="alter">Ihr Alter:</label>
-                    <input type="number" id="alter" name="alter" placeholder="0" step="1" min="18" required
+                    <input className="input" type="number" id="alter" name="alter" placeholder="0" step="1" min="18" required
                            onChange={handleChange}
                            value={data.alter || ''}
                     />
                     <label htmlFor="Geschlecht">Ihr Geschlecht: </label>
-                    <select id="geschlecht" name="geschlecht" value={data.geschlecht || ''} onChange={handleChange}>
+                    <select className="input" id="geschlecht" name="geschlecht" value={data.geschlecht || ''} onChange={handleChange}>
                         <option value="" disabled>Bitte wählen</option>
                         <option value="maennlich">Männlich</option>
                         <option value="weiblich">Weiblich</option>
                     </select>
                     <label htmlFor="fahrerfahrung">Fahrerfahrung (in Jahren):</label>
-                    <input type="number" id="fahrerfahrung" name="fahrerfahrung" placeholder="0" step="1" required
+                    <input className="input" type="number" id="fahrerfahrung" name="fahrerfahrung" placeholder="0" step="1" required
                            onChange={handleChange}
                            value={data.fahrerfahrung || ''}
                     />

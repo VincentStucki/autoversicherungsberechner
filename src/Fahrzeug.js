@@ -12,7 +12,7 @@ function Fahrzeug({ data, onDataChange }) {
 
     return (
         <div>
-            <div className="circle-container">
+            {/*  <div className="circle-container">
                 <svg width="1600" height="200" className="circle-container">
                     <Circle cx={100} cy={50} radius={50} color="#2176FF" number={1} />
                     <line x1="150" y1="50" x2="250" y2="50" stroke="black" strokeWidth="2" className="line" />
@@ -30,13 +30,13 @@ function Fahrzeug({ data, onDataChange }) {
                     <text x={700} y={150} textAnchor="middle" fill="black">Fahrstrecke</text>
                     <text x={900} y={150} textAnchor="middle" fill="black">Region</text>
                 </svg>
-            </div>
-            <div className="content">
+            </div>  */}
+            <div className="home content">
                 <form>
                     <label>
-                        Wert des Fahrzeuges:
-                        <input type="number" name="wert" id="wert" value={data.wert || ''} onChange={handleChange} placeholder="0.00" step="0.01" min="0" required />
-                    </label>
+                        Wert des Fahrzeuges: </label>
+                        <input className="input" type="number" name="wert" id="wert" value={data.wert || ''} onChange={handleChange} placeholder="0.00" step="0.01" min="0" required />
+
                 </form>
             </div>
 

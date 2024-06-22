@@ -17,7 +17,7 @@ function Region({ data, onDataChange }) {
 
     return (
         <div>
-            <div className="circle-container">
+            {/*   <div className="circle-container">
                 <svg width="1600" height="200" className="circle-container">
                     <Circle cx={100} cy={50} radius={50} color="#2176FF" number={1} />
                     <line x1="150" y1="50" x2="250" y2="50" stroke="black" strokeWidth="2" className="line" />
@@ -35,11 +35,11 @@ function Region({ data, onDataChange }) {
                     <text x={700} y={150} textAnchor="middle" fill="black">Fahrstrecke</text>
                     <text x={900} y={150} textAnchor="middle" fill="black">Region</text>
                 </svg>
-            </div>
-            <div className="content">
+            </div> */}
+            <div className="home content">
                 <form>
                     <label htmlFor="wohnort">Wohnort (Region)</label>
-                    <select id="wohnort" name="wohnort" value={data.wohnort || ''} onChange={handleChange}>
+                    <select className="input" id="wohnort" name="wohnort" value={data.wohnort || ''} onChange={handleChange}>
                         <option value="" disabled>Bitte Wählen</option>
                         <option value="stadt">städtisches Gebiet</option>
                         <option value="land">ländliches Gebiet</option>

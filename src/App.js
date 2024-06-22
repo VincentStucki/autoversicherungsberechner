@@ -7,12 +7,14 @@ import Fahrstrecke from './Fahrstrecke';
 import Region from './Region';
 import Start from './Start';
 import Ergebnis from './Ergebnis';
+import CircleNavigation from './CircleNavigation';
 import './mvp.css';
 
 function App() {
     const [isLinkVisible, setLinkVisible] = useState(true);
     const [currentPageIndex, setCurrentPageIndex] = useState(0);
     const [isButtonVisible, setButtonVisible] = useState(false);
+    const [isProgressBarVisible, setProgressBarVisible] = useState(false);
     const [formData, setFormData] = useState({
         fahrzeug: {},
         fahrer: {},
@@ -49,6 +51,7 @@ function App() {
         setCurrentPageIndex(0);
         setLinkVisible(true);
         setButtonVisible(false);
+        setProgressBarVisible(false);
         setFormData({
             fahrzeug: {},
             fahrer: {},
@@ -64,6 +67,7 @@ function App() {
             setLinkVisible(true);
             setButtonVisible(false);
             setCurrentPageIndex(0);
+            setProgressBarVisible(false);
         };
 
         window.addEventListener("beforeunload", handleUnload);
@@ -76,17 +80,18 @@ function App() {
 
         useEffect(() => {
             setButtonVisible(location.pathname !== '/Start' && location.pathname !== '/Ergebnis');
+            setProgressBarVisible(location.pathname !== '/Start' && location.pathname !== '/Ergebnis');
         }, [location.pathname]);
 
         return (
             <nav>
                 {isButtonVisible && currentPageIndex > 0 && (
-                    <Link to={pages[currentPageIndex - 1].path} className="button-link zurueck" onClick={handlePrevious}>
+                    <Link to={pages[currentPageIndex - 1].path} className="button-nav zurueck" onClick={handlePrevious}>
                         Zurück
                     </Link>
                 )}
                 {isButtonVisible && currentPageIndex < pages.length - 1 && (
-                    <Link to={pages[currentPageIndex + 1].path} className="button-link weiter" onClick={handleNext}>
+                    <Link to={pages[currentPageIndex + 1].path} className="button-nav weiter" onClick={handleNext}>
                         Weiter
                     </Link>
                 )}
@@ -103,42 +108,52 @@ function App() {
 
         return (
             isLinkVisible && (
-                <Link to={pages[1].path} className="button-link" onClick={() => {
-                    setLinkVisible(false);
-                    setButtonVisible(true);
-                    setCurrentPageIndex(1);
-                }}>
-                    Start
-                </Link>
+                <div className="home">
+                    <h1 className="homeText">Willkommen zum Autoversicherungsrechner</h1>
+                    <Link to={pages[1].path} className="button-link start" onClick={() => {
+                        setLinkVisible(false);
+                        setButtonVisible(true);
+                        setCurrentPageIndex(1);
+                        setProgressBarVisible(true);
+                    }}>
+                        Start
+                    </Link>
+                </div>
             )
         );
     }
 
     return (
         <div className="container">
-            <header>
-                <h1>Autoversicherungsrechner</h1>
-            </header>
+            <div className="header-container">
+                <h1 className="title">Autoversicherung</h1>
+            </div>
+
             <main>
                 <Router>
-                    <StartLink />
-                    <Routes>
-                        <Route path="/" element={<Navigate to="/Start" />} />
-                        {pages.map((page, index) => (
-                            <Route
-                                key={index}
-                                path={page.path}
-                                element={
-                                    <page.component
-                                        data={formData[page.name.toLowerCase()]}
-                                        onDataChange={(data) => handleFormDataChange(page.name.toLowerCase(), data)}
-                                    />
-                                }
-                            />
-                        ))}
-                        <Route path="/Ergebnis" element={<Ergebnis formData={formData} onRestart={resetApp} />} />
-                    </Routes>
-                    <NavigationButtons />
+                        <StartLink />
+                        { isProgressBarVisible && (
+                            <CircleNavigation currentPageIndex={currentPageIndex}/>
+                        )}
+                        <Routes>
+                            <Route path="/" element={<Navigate to="/Start" />} />
+                            {pages.map((page, index) => (
+                                <Route
+                                    key={index}
+                                    path={page.path}
+                                    element={
+                                        <page.component
+                                            data={formData[page.name.toLowerCase()]}
+                                            onDataChange={(data) => handleFormDataChange(page.name.toLowerCase(), data)}
+                                        />
+                                    }
+                                />
+                            ))}
+                            <Route path="/Ergebnis" element={<Ergebnis formData={formData} onRestart={resetApp} />} />
+                        </Routes>
+                    <div className="navigation">
+                        <NavigationButtons />
+                    </div>
                 </Router>
             </main>
         </div>
