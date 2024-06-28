@@ -22,7 +22,7 @@ function App() {
         fahrstrecke: {},
         region: {}
     });
-
+    // Liste alle Seiten
     const pages = [
         { name: "Start", path: "/Start", component: Start },
         { name: "Fahrzeug", path: "/Fahrzeug", component: Fahrzeug },
@@ -31,22 +31,22 @@ function App() {
         { name: "Fahrstrecke", path: "/Fahrstrecke", component: Fahrstrecke },
         { name: "Region", path: "/Region", component: Region }
     ];
-
+    // Um auf die nächste Seite zu kommen
     const handleNext = () => {
         setCurrentPageIndex(prevIndex => Math.min(prevIndex + 1, pages.length - 1));
     };
-
+    // Um auf die vorherige Seite zu kommen
     const handlePrevious = () => {
         setCurrentPageIndex(prevIndex => Math.max(prevIndex - 1, 0));
     };
-
+    // Um die Daten zu speichern für die Berechnung
     const handleFormDataChange = (page, data) => {
         setFormData(prevData => ({
             ...prevData,
             [page]: data
         }));
     };
-
+    // Lösch alle Daten und setzt alles ins Standard ein
     const resetApp = () => {
         setCurrentPageIndex(0);
         setLinkVisible(true);

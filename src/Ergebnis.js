@@ -33,7 +33,7 @@ function Ergebnis({ formData, onRestart }) {
         default:
             versicherungFaktor = 1.0;
     }
-
+    // Berechnung
     let Versicherungskosten = basis * alterFaktor * geschlechtFaktor * fahrzeugWertFaktor * streckenFaktor * fahrErfahrungFaktor * versicherungFaktor * regionFaktor;
 
     const navigate = useNavigate();

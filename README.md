@@ -75,7 +75,7 @@ Die React-App ist auf vercel deployed: [Autoversicherungsberechner](https://auto
 
 ## Refactor
 Ich habe bemerkt, dass das Design recht simple ist und ich sollte es überarbeiten.
-21.06.2024 Es ist anhand des Figmas so dargestellt, doch ich möchte das Styling verbessern.
+21.06.2024 Es ist anhand des Figmas so dargestellt, doch ich möchte das Styling verbessern + Code Struktur.
 
 # Fazit
 Der Autoversicherungsrechner ist ein praktisches Tool zur Berechnung der Autoversicherungsprämie
